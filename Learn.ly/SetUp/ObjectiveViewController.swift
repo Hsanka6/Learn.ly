@@ -9,36 +9,45 @@
 import UIKit
 
 class ObjectiveViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    var objectiveArray = ["70%","80%","90%", "100%"]
+    var objectiveArray = ["70","80","90", "100"]
+    var objective:String = ""
+    var topicsSelected = [String]()
+    var grade: String = ""
+    var reward:Int = 0
+    var phoneNumber:String = ""
     
     
     @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("SET OBJECTIVE")
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objectiveArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "objective")
+        cell?.textLabel?.textColor = UIColor.white
         cell?.textLabel?.text = objectiveArray[indexPath.row]
         return cell!
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "", sender: <#T##Any?#>)
+        objective = objectiveArray[indexPath.row]
+        performSegue(withIdentifier: "confirmObjective", sender: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "confirmObjective" {
+            if let destination = segue.destination as? SetupViewController {
+                destination.objective = objective
+                destination.grade = grade
+                destination.topicsSelected = topicsSelected
+                destination.reward = reward
+                destination.phoneNumber = phoneNumber
+            }
+        }
     }
-    */
+    
 
 }

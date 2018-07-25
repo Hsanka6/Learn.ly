@@ -8,15 +8,88 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var ref:DatabaseReference?
+    var userRef:DatabaseReference?
+    
+    @IBAction func sendData(_ sender: Any) {
+        print("go to database")
+        var topics:String = ""
+        if topicsSelected.count > 0
+        {
+            topics = topicsSelected[0]
+            var i = 1
+            while(i < topicsSelected.count){
+                topics += ", " + topicsSelected[i]
+                i += 1
+            }
+        }
+        ref = Database.database().reference()
+        child = Child(gd: grade, obj: objective, add: "0/\(objective)", sub: "0/\(objective)", mult: "0/\(objective)", div: "0/\(objective)", topic: topics)
+        print("email " + email + " reward: \(reward)" + " objective " + objective)
+        let parentDict = [ "objective": objective, "reward": reward as Any, "PhoneNum": phoneNumber] as [String: Any]
+        ref?.child("parents").child(uid).setValue(parentDict)
+        
+        let childDict = ["grade": child?.grade, "addition":child?.addition,"multiplication":child?.multiplication,"subtraction":child?.subtraction,"division":child?.division, "topic":child?.topics ]
+        userRef = Database.database().reference().child("parents").child(uid)
+        let userChild = userRef?.childByAutoId()//.setValue(childDict)
+        userChild?.setValue(childDict)
+        let childId = userChild?.key
+        print("childId \(String(describing: childId))")
+        
+        let newDict = [ "objective": objective, "reward": reward as Any, "PhoneNum": phoneNumber,"childId": childId] as [String: Any]
+        userRef?.setValue(newDict)
+        userChild?.setValue(childDict)
+        
+        
+        performSegue(withIdentifier: "toMain", sender: nil)
+        
+    }
+    @IBAction func confirmButton(_ sender: Any) {
+        print("go to database")
+        var topics:String = ""
+        if topicsSelected.count > 0
+        {
+            topics = topicsSelected[0]
+            var i = 1
+            while(i < topicsSelected.count){
+                topics += ", " + topicsSelected[i]
+                i += 1
+            }
+        }
+        ref = Database.database().reference()
+        child = Child(gd: grade, obj: objective, add: "0/\(objective)", sub: "0/\(objective)", mult: "0/\(objective)", div: "0/\(objective)", topic: topics)
+        print("email " + email + " reward: \(reward)" + " objective " + objective)
+        let parentDict = [ "objective": objective, "reward": reward as Any, "PhoneNum": phoneNumber] as [String: Any]
+        ref?.child("parents").child(uid).setValue(parentDict)
+        
+        let childDict = ["grade": child?.grade, "addition":child?.addition,"multiplication":child?.multiplication,"subtraction":child?.subtraction,"division":child?.division, "topic":child?.topics ]
+        userRef = Database.database().reference().child("parents").child(uid)
+        let userChild = userRef?.childByAutoId()//.setValue(childDict)
+        userChild?.setValue(childDict)
+        let childId = userChild?.key
+        print("childId \(String(describing: childId))")
+        
+        let newDict = [ "objective": objective, "reward": reward as Any, "PhoneNum": phoneNumber,"childId": childId] as [String: Any]
+        userRef?.setValue(newDict)
+        userChild?.setValue(childDict)
+        
+        
+        performSegue(withIdentifier: "toMain", sender: nil)
+    }
     @IBOutlet var tableView: UITableView!
-    var setUpArray = ["Email", "Grade", "Topics", "Objective"]
+    var setUpArray = ["Email", "Grade", "Topics", "Objective", "Reward for Objective Completed", "Phone Number"]
     var grade:String = ""
     var email:String = ""
     var objective:String = ""
+    var reward:Int = 0
+    var phoneNumber:String = ""
     var topicsSelected = [String]()
+    var child: Child?
+    var uid:String = ""
     
     let user = Auth.auth().currentUser
     
@@ -26,34 +99,22 @@ class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        print("Reward \(reward)")
+        print("Phone \(phoneNumber)")
         if let user = user {
             // The user's ID, unique to the Firebase project.
             // Do NOT use this value to authenticate with your backend server,
             // if you have one. Use getTokenWithCompletion:completion: instead.
             // ...
             email = user.email!
+            uid = user.uid
         }
         
         //setupNav()
         
     }
     
-//    func setupNav(){
-//        navigationBar.isTranslucent = false
-//        navigationBar.delegate = self
-//        navigationBar.backgroundColor = .white
-//        //navigationBar.items = [standaloneItem]
-//
-//        navigationBar.translatesAutoresizingMaskIntoConstraints = false
-//        navigationBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        navigationBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//
-//        if #available(iOS 11, *) {
-//            navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//        } else {
-//            navigationBar.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        }
-//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return setUpArray.count
     }
@@ -61,6 +122,8 @@ class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "setupCell")
         {
+            cell.textLabel?.textColor = UIColor.white
+            cell.detailTextLabel?.textColor = UIColor.white
             print(setUpArray[indexPath.row])
             cell.textLabel?.text = setUpArray[indexPath.row]
             if indexPath.row == 0
@@ -73,15 +136,28 @@ class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             else if indexPath.row == 2
             {
-                var topics:String = ""
-                for t in topicsSelected {
-                    topics += t
+                if topicsSelected.count > 0
+                {
+                    var topics:String = topicsSelected[0]
+                    var i = 1
+                    while(i < topicsSelected.count){
+                        topics += ", " + topicsSelected[i]
+                        i += 1
+                    }
+                    cell.detailTextLabel?.text = topics
                 }
-                cell.detailTextLabel?.text = topics
             }
             else if indexPath.row == 3
             {
                 cell.detailTextLabel?.text = objective
+            }
+            else if indexPath.row == 4
+            {
+                cell.detailTextLabel?.text = "\(reward)"
+            }
+            else if indexPath.row == 5
+            {
+                cell.detailTextLabel?.text = phoneNumber
             }
 
             //cell.userData.text
@@ -104,27 +180,51 @@ class SetupViewController: UIViewController, UITableViewDelegate, UITableViewDat
         {
             performSegue(withIdentifier: "toObjective", sender: nil)
         }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let height: CGFloat = 50 //whatever height you want to add to the existing height
-        let bounds = self.navigationController!.navigationBar.bounds
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height + height)
+        else if setUpArray[indexPath.row] == "Reward for Objective Completed"
+        {
+            performSegue(withIdentifier: "toReward", sender: nil)
+        }
     }
     
     
-    /*
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toGrade" {
+            if let destination = segue.destination as? ViewController {
+                destination.grade = grade
+                destination.topicsSelected = topicsSelected
+                destination.objective = objective
+                destination.reward = reward
+                destination.phoneNumber = phoneNumber
+            }
+        }
+        else if segue.identifier == "toTopics" {
+            if let destination = segue.destination as? TopicViewController {
+                destination.grade = grade
+                destination.topicsSelected = topicsSelected
+                destination.objective = objective
+                destination.reward = reward
+                destination.phoneNumber = phoneNumber
+            }
+        }
+        else if segue.identifier == "toObjective" {
+            if let destination = segue.destination as? ObjectiveViewController {
+                destination.grade = grade
+                destination.topicsSelected = topicsSelected
+                destination.objective = objective
+                destination.reward = reward
+                destination.phoneNumber = phoneNumber
+            }
+        }
+       
+        
     }
-    */
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 80)
-    }
+ 
+   
  
 
 }
