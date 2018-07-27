@@ -7,19 +7,50 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    
+    var ref:DatabaseReference?
+    var userRef:DatabaseReference?
+    var child: Child?
+    var uid:String = ""
+    var email:String = ""
+    let user = Auth.auth().currentUser
+    
+    
+    @IBOutlet var nameTF: UITextField!
     @IBOutlet var gradeTF: UITextField!
     @IBOutlet var numPointsTF: UITextField!
     @IBOutlet var rewardTF: UITextField!
+    @IBOutlet var rightTF: UITextField!
+    @IBOutlet var wrongTF: UITextField!
     
+    
+    @IBAction func saveKid(_ sender: Any) {
+        ref = Database.database().reference()
+        child = Child(nm: nameTF.text!, gd: gradeTF.text!, numPts: Int(numPointsTF.text!)!, rVal: Int(rightTF.text!)!, wVal: Int(wrongTF.text!)!, rw: rewardTF.text!)
+        //print("email " + email + " reward: \(reward)" + " objective " + objective)
+        
+        ref?.child(email).child(nameTF.text!).setValue(child);
+        
+        
+        
+    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == gradePickerView{
             return grades.count
         }
         else if pickerView == numPointsPickerView {
             return numPoints.count
+        }
+        else if pickerView == rightValsPickerView{
+            return rightVals.count
+        }
+        else if pickerView == wrongValsPickerView{
+            return wrongVals.count
         }
         return rewards.count
     }
@@ -33,6 +64,12 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         } else if pickerView == numPointsPickerView {
             return numPoints[row]
         }
+        else if pickerView == wrongValsPickerView {
+            return wrongVals[row]
+        }
+        else if pickerView == rightValsPickerView {
+            return rightVals[row]
+        }
         return rewards[row]
     }
     
@@ -42,7 +79,14 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             gradeTF.text = grades[row]
         } else if pickerView == numPointsPickerView {
             numPointsTF.text = numPoints[row]
-        } else{
+        }
+        else if pickerView == wrongValsPickerView {
+            wrongTF.text = wrongVals[row]
+        }
+        else if pickerView == rightValsPickerView {
+            rightTF.text = rightVals[row]
+        }
+        else{
             rewardTF.text = rewards[row]
         }
         self.view.endEditing(true)
@@ -53,6 +97,10 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var grades = ["Kindergarten", "1st Grade","2nd Grade","3rd Grade","4th Grade", "5th Grade"]
     
     var numPoints = ["20","50","100"]
+    
+    var rightVals = ["2","5","10"]
+    
+    var wrongVals = ["0","1","2","5"]
 
     var rewards = ["Allowance", "Ice Cream", "Videogame Time"]
     
@@ -60,8 +108,22 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var gradePickerView = UIPickerView()
     var numPointsPickerView = UIPickerView()
     var rewardPickerView = UIPickerView()
+    var rightValsPickerView = UIPickerView()
+    var wrongValsPickerView = UIPickerView()
     override func viewDidLoad() {
         super.viewDidLoad()
+        //use guard
+        if let user = user {
+            email = user.email!
+            uid = user.uid
+        }
+        
+        pickerViewSetup()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    func pickerViewSetup(){
         gradePickerView.delegate = self
         gradePickerView.dataSource = self
         gradeTF.inputView = gradePickerView
@@ -73,7 +135,16 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         rewardPickerView.delegate = self
         rewardPickerView.dataSource = self
         rewardTF.inputView = rewardPickerView
-        // Do any additional setup after loading the view.
+        
+        
+        wrongValsPickerView.delegate = self
+        wrongValsPickerView.dataSource = self
+        wrongTF.inputView = wrongValsPickerView
+        
+        
+        rightValsPickerView.delegate = self
+        rightValsPickerView.dataSource = self
+        rightTF.inputView = rightValsPickerView
     }
 
     /*

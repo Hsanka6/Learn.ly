@@ -89,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="e3w-VE-oeD">
-                                <rect key="frame" x="15" y="84" width="345" height="165"/>
+                                <rect key="frame" x="15" y="84" width="345" height="255"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="21K-gK-8Tq">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="30"/>
@@ -115,6 +115,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How many point for getting a question right?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Yk-Z8-zPM">
+                                        <rect key="frame" x="0.0" y="180" width="345" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How many points for getting a question wrong?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mps-L0-rYI">
+                                        <rect key="frame" x="0.0" y="225" width="345" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -127,12 +139,19 @@
                         <viewLayoutGuide key="safeArea" id="8R9-VC-GQ0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Kid" id="afp-K2-tJu">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="Vin-vo-qQh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Vin-vo-qQh">
+                            <connections>
+                                <action selector="saveKid:" destination="CwP-Ys-Zcr" id="tR0-vp-NgA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="gradeTF" destination="uXM-hS-70j" id="Xjc-OS-mIf"/>
+                        <outlet property="nameTF" destination="21K-gK-8Tq" id="bt6-ol-JDc"/>
                         <outlet property="numPointsTF" destination="cxh-Lu-h0W" id="yHn-4u-KEK"/>
                         <outlet property="rewardTF" destination="xq3-hq-pVK" id="wf6-jj-VfT"/>
+                        <outlet property="rightTF" destination="4Yk-Z8-zPM" id="qh1-TT-WX4"/>
+                        <outlet property="wrongTF" destination="mps-L0-rYI" id="6aI-z4-joF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMn-nr-VYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
