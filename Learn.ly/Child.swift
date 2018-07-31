@@ -24,4 +24,16 @@ class Child {
         reward = rw
         pointsForReward = numPts
     }
+    
+    var dict:[String:Any] {
+        return [
+            "name": name ,
+            "grade": grade ,
+            "right_val": rightVal ,
+            "wrong_val": wrongVal,
+            "reward": reward,
+            "points_for_reward": pointsForReward
+        ]
+    }
+    
 }

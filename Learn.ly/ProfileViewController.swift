@@ -14,6 +14,11 @@ import PassKit
 class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var paymentReq: PKPaymentRequest!
+    let user = Auth.auth().currentUser
+    var email:String = ""
+    var uid:String = ""
+    
+    
 
     var profileArray = ["Objective", "Reward", "Multiplication","Additon", "Subtraction", "Division", "Reward Kid"]
     var subtitleArray = [String]()
@@ -61,8 +66,50 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     
     
     var ref:DatabaseReference?
+    
+    var parentRef:DatabaseReference?
     var topics = [String]()
     var childId:String = ""
+    
+    
+    func getKids(){
+        ref = Database.database().reference()
+        print("getTopics")
+        let userID = Auth.auth().currentUser?.uid
+        print("user id is \(String(describing: userID))")
+        
+        var idKeys = [String]()
+        parentRef = Database.database().reference().child(uid)
+        parentRef?.observe(.value) { snapshot in
+            print(snapshot.key)
+        }
+        
+        
+    }
+        
+        
+        
+        
+//        ref?.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//            print("get ChildId")
+//            let value = snapshot.value as? NSDictionary
+//            self.childId = value?["childId"] as? String ?? ""
+//
+//            print("reward \(value?["reward"] as? String ?? "")")
+//            print("childID \(self.childId)")
+//            if let objective = value?["objective"] as? String
+//            {
+//                print(objective)
+//                self.subtitleArray.append(objective)
+//            }
+//            let rewards = value?["reward"] as? String ?? ""
+//            if let reward = value?["reward"] as? Int
+//            {
+//                print(reward)
+//                self.subtitleArray.append(String(reward))
+//            }
+//        })
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +117,11 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
         self.title = "Profile"
         tableView.delegate = self
         tableView.dataSource = self
+        if let user = user {
+            email = user.email!
+            uid = user.uid
+        }
+        getKids()
         //self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
         //getTopics()
