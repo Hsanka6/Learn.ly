@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     let user = Auth.auth().currentUser
     var email:String = ""
     var uid:String = ""
-    
+    var children = [Child]()
     
 
     var profileArray = ["Objective", "Reward", "Multiplication","Additon", "Subtraction", "Division", "Reward Kid"]
@@ -73,20 +73,31 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     
     
     func getKids(){
-        ref = Database.database().reference()
-        print("getTopics")
-        let userID = Auth.auth().currentUser?.uid
-        print("user id is \(String(describing: userID))")
+//        ref = Database.database().reference()
+//        print("getTopics")
+//        let userID = Auth.auth().currentUser?.uid
+//        print("user id is \(String(describing: userID))")
+//        
+//        var idKeys = [String]()
+//        parentRef = Database.database().reference().child(uid)
+//        parentRef?.observe(.value) { snapshot in
+//            for i in snapshot.children{
+//                self.parentRef?.child(String(describing: i)).observe(.value, with: { snapshot in
+//                    print("this is value \(snapshot.key)")
+//                   
+//                })
+//            }
+//        }
+
         
-        var idKeys = [String]()
-        parentRef = Database.database().reference().child(uid)
-        parentRef?.observe(.value) { snapshot in
-            print(snapshot.key)
+        
+        DataService.ds.REF_PARENT.observe(.value) { snapshot in
+            print(snapshot.value)
         }
         
-        
     }
-        
+    
+    
         
         
         
