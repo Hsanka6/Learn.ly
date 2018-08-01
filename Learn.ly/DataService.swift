@@ -18,10 +18,10 @@ class DataService{
     private var _REF_PARENT = DB_BASE.child("parents")
     
     var REF_BASE: DatabaseReference{
-        return REF_BASE
+        return _REF_BASE
     }
     
     var REF_PARENT: DatabaseReference{
-        return REF_BASE
+        return _REF_PARENT
     }
 }

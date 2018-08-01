@@ -51,7 +51,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="fC3-bR-tRL" id="6V9-9x-Z6f"/>
+                                    <outlet property="dataSource" destination="fC3-bR-tRL" id="6oB-Xx-EGG"/>
                                     <outlet property="delegate" destination="fC3-bR-tRL" id="Qvz-mZ-Dgb"/>
                                 </connections>
                             </tableView>
@@ -73,7 +73,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="bqq-FX-c5y" id="NYj-Hd-FIH"/>
+                        <outlet property="tableView" destination="bqq-FX-c5y" id="aJm-mF-MjY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3P3-FV-PqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,6 +429,7 @@
         <image name="icons8-customer-64" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="pMW-a0-10g"/>
         <segue reference="nkY-gw-Qqx"/>
     </inferredMetricsTieBreakers>
 </document>

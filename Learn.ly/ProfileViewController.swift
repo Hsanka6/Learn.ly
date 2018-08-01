@@ -20,9 +20,9 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     var children = [Child]()
     
 
+    @IBOutlet var tableView: UITableView!
     var profileArray = ["Objective", "Reward", "Multiplication","Additon", "Subtraction", "Division", "Reward Kid"]
     var subtitleArray = [String]()
-    @IBOutlet var tableView: UITableView!
     
     func payKid() {
         let paymentNetworks = [PKPaymentNetwork.amex, .visa, .masterCard, .discover]
@@ -88,12 +88,34 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
 //                })
 //            }
 //        }
-
+//        DataService.ds.REF_PARENT.observe(.value, with { snapshot in
+//            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
+//                for snap in snapshot{
+//                    print("snap is \(snap)")
+//                    if let postDict = snap.value as? Dictionary<String, AnyObject>{
+//                        let key = snap.key
+//                        let child = Child(postKey: key, postDict: postDict)
+//                        self.children.append(child)
+//                    }
+//                }
+//            }
+//            self.tableView.reloadData()
+//        })
         
-        
-        DataService.ds.REF_PARENT.observe(.value) { snapshot in
-            print(snapshot.value)
-        }
+        DataService.ds.REF_PARENT.observe(.value, with: { snapshot in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshot{
+                    print("snap is \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject>{
+                        let key = snap.key
+                        let child = Child(postKey: key, postDict: postDict)
+                        self.children.append(child)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+            
+        })
         
     }
     
@@ -139,11 +161,16 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profileArray.count
+        return children.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell")
+        let child = children[indexPath.row]
+        print("child name is \(child.name)")
+        
+        cell?.textLabel?.text = child.name
+        cell?.detailTextLabel?.text = child.grade
         cell?.textLabel?.textColor = UIColor.white
         cell?.detailTextLabel?.textColor = UIColor.white
 //        cell?.textLabel?.text = profileArray[indexPath.row]
