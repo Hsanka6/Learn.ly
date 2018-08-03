@@ -73,35 +73,6 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     
     
     func getKids(){
-//        ref = Database.database().reference()
-//        print("getTopics")
-//        let userID = Auth.auth().currentUser?.uid
-//        print("user id is \(String(describing: userID))")
-//        
-//        var idKeys = [String]()
-//        parentRef = Database.database().reference().child(uid)
-//        parentRef?.observe(.value) { snapshot in
-//            for i in snapshot.children{
-//                self.parentRef?.child(String(describing: i)).observe(.value, with: { snapshot in
-//                    print("this is value \(snapshot.key)")
-//                   
-//                })
-//            }
-//        }
-//        DataService.ds.REF_PARENT.observe(.value, with { snapshot in
-//            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
-//                for snap in snapshot{
-//                    print("snap is \(snap)")
-//                    if let postDict = snap.value as? Dictionary<String, AnyObject>{
-//                        let key = snap.key
-//                        let child = Child(postKey: key, postDict: postDict)
-//                        self.children.append(child)
-//                    }
-//                }
-//            }
-//            self.tableView.reloadData()
-//        })
-        
         DataService.ds.REF_PARENT.observe(.value, with: { snapshot in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshot{
@@ -116,7 +87,6 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
             self.tableView.reloadData()
             
         })
-        
     }
     
     

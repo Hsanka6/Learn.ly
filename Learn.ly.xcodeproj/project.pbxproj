@@ -30,6 +30,7 @@
 		70A8450D206F955B00766BF4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8450C206F955B00766BF4 /* TabBarController.swift */; };
 		70A8450F2070071B00766BF4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A8450E2070071B00766BF4 /* SignUpViewController.swift */; };
 		70E1737E21123B2B00FD4899 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1737D21123B2B00FD4899 /* DataService.swift */; };
+		70E173802114221D00FD4899 /* MathSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E1737F2114221D00FD4899 /* MathSectionViewController.swift */; };
 		70F997EF2070ED0A00FFEF48 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F997EE2070ED0A00FFEF48 /* PassKit.framework */; };
 		899C519F6A6F1B087504CA3B /* Pods_Learn_ly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAB07A11880C02BB1C0D286 /* Pods_Learn_ly.framework */; };
 		8E3CE60F8BD582FB96155C3A /* Pods_Learn_lyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD44B742FF89CF0F09664F4 /* Pods_Learn_lyTests.framework */; };
@@ -85,6 +86,7 @@
 		70A8450C206F955B00766BF4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		70A8450E2070071B00766BF4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		70E1737D21123B2B00FD4899 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		70E1737F2114221D00FD4899 /* MathSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathSectionViewController.swift; sourceTree = "<group>"; };
 		70F997EE2070ED0A00FFEF48 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		7FA44927D289C5EB019EE81B /* Pods-Learn.lyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Learn.lyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Learn.lyTests/Pods-Learn.lyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC4C4584979112068B649F2A /* Pods_Learn_lyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Learn_lyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +191,7 @@
 				705CC70C2070CC96003DE394 /* ResultViewController.swift */,
 				7078B5042108408600FB40AF /* AddKidViewController.swift */,
 				70E1737D21123B2B00FD4899 /* DataService.swift */,
+				70E1737F2114221D00FD4899 /* MathSectionViewController.swift */,
 			);
 			path = Learn.ly;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				70A844D2206F621E00766BF4 /* AppDelegate.swift in Sources */,
 				70A84506206F884700766BF4 /* ObjectiveViewController.swift in Sources */,
 				70A8450D206F955B00766BF4 /* TabBarController.swift in Sources */,
+				70E173802114221D00FD4899 /* MathSectionViewController.swift in Sources */,
 				705CC70D2070CC96003DE394 /* ResultViewController.swift in Sources */,
 				70E1737E21123B2B00FD4899 /* DataService.swift in Sources */,
 				70A84509206F8CDA00766BF4 /* PracticeViewController.swift in Sources */,

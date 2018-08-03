@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class PracticeViewController: UIViewController/*, UITableViewDelegate, UITableViewDataSource*/ {
+class PracticeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
+    @IBOutlet var tableView: UITableView!
     var topics = [String]()
+    var children = [Child]()
     var allTopics:String = ""
     var childId:String = ""
     var operation:String = ""
@@ -21,15 +23,33 @@ class PracticeViewController: UIViewController/*, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         print("PRACTICE")
+        tableView.delegate = self
+        tableView.dataSource = self
+        getKids()
         
-        
-//        let tabBar = self.tabBarController as! TabBarController
-//        print(tabBar.objective)
-//        print(tabBar.topicsSelected[0])
-//        print("this is \(Double(str)!)")
-        //getTopics()
 
     }
+    
+    
+   
+        
+    func getKids(){
+        DataService.ds.REF_PARENT.observe(.value, with: { snapshot in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshot{
+                    print("snap is \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject>{
+                        let key = snap.key
+                        let child = Child(postKey: key, postDict: postDict)
+                        self.children.append(child)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+            
+        })
+    }
+
 
 //    func getTopics()
 //    {
@@ -72,19 +92,24 @@ class PracticeViewController: UIViewController/*, UITableViewDelegate, UITableVi
 //
 //    }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return topics.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "practiceCell")
-//        cell?.textLabel?.textColor = UIColor.white
-//        cell?.textLabel?.text = topics[indexPath.row]
-//        return cell!
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return children.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell")
+        let child = children[indexPath.row]
+        print("child name is \(child.name)")
+        
+        cell?.textLabel?.text = child.name
+        cell?.detailTextLabel?.text = child.grade
+        cell?.textLabel?.textColor = UIColor.white
+        cell?.detailTextLabel?.textColor = UIColor.white
+        return cell!
+    }
+
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if topics[indexPath.row] == "Addition"
 //        {
 //            operation = "+"
@@ -101,9 +126,9 @@ class PracticeViewController: UIViewController/*, UITableViewDelegate, UITableVi
 //        {
 //            operation = "-"
 //        }
-//        performSegue(withIdentifier: "toMath", sender: nil)
-//    }
-//
+        performSegue(withIdentifier: "toMathSections", sender: nil)
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
