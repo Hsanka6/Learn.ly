@@ -173,6 +173,7 @@
 		70A844D0206F621E00766BF4 /* Learn.ly */ = {
 			isa = PBXGroup;
 			children = (
+				70D02A53211A4A4000B04F6C /* MathSelection */,
 				705CC70320703534003DE394 /* Auth */,
 				70A84507206F8CAA00766BF4 /* SetUp */,
 				70A844FF206F793800766BF4 /* Learn.ly.entitlements */,
@@ -181,17 +182,14 @@
 				70A844D8206F621E00766BF4 /* Assets.xcassets */,
 				70A844DA206F621E00766BF4 /* LaunchScreen.storyboard */,
 				70A844DD206F621E00766BF4 /* Info.plist */,
-				70A84508206F8CDA00766BF4 /* PracticeViewController.swift */,
 				70A8450A206F8D8300766BF4 /* ProfileViewController.swift */,
 				70A8450C206F955B00766BF4 /* TabBarController.swift */,
 				705CC6FD20700B49003DE394 /* GoogleService-Info.plist */,
 				705CC70620706304003DE394 /* Child.swift */,
 				705CC7082070981B003DE394 /* Home.storyboard */,
-				705CC70A2070A949003DE394 /* MathViewController.swift */,
 				705CC70C2070CC96003DE394 /* ResultViewController.swift */,
 				7078B5042108408600FB40AF /* AddKidViewController.swift */,
 				70E1737D21123B2B00FD4899 /* DataService.swift */,
-				70E1737F2114221D00FD4899 /* MathSectionViewController.swift */,
 			);
 			path = Learn.ly;
 			sourceTree = "<group>";
@@ -233,6 +231,16 @@
 				70A84505206F884700766BF4 /* ObjectiveViewController.swift */,
 			);
 			path = SetUp;
+			sourceTree = "<group>";
+		};
+		70D02A53211A4A4000B04F6C /* MathSelection */ = {
+			isa = PBXGroup;
+			children = (
+				70A84508206F8CDA00766BF4 /* PracticeViewController.swift */,
+				705CC70A2070A949003DE394 /* MathViewController.swift */,
+				70E1737F2114221D00FD4899 /* MathSectionViewController.swift */,
+			);
+			path = MathSelection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

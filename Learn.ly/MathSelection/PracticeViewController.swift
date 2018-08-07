@@ -110,22 +110,7 @@ class PracticeViewController: UIViewController, UITableViewDelegate, UITableView
 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if topics[indexPath.row] == "Addition"
-//        {
-//            operation = "+"
-//        }
-//        else if topics[indexPath.row] == "Multiplication"
-//        {
-//            operation = "X"
-//        }
-//        else if topics[indexPath.row] == "Division"
-//        {
-//            operation = "\u{00f7}"
-//        }
-//        else if topics[indexPath.row] == "Subtraction"
-//        {
-//            operation = "-"
-//        }
+
         performSegue(withIdentifier: "toMathSections", sender: nil)
     }
 

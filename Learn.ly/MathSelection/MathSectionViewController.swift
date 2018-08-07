@@ -10,8 +10,9 @@ import UIKit
 
 class MathSectionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
+    var operation:String = ""
     
-    var subjects = ["Addition", "Subtraction","Multiplication","Division"]
+    var topics = ["Addition", "Subtraction","Multiplication","Division"]
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -20,14 +21,35 @@ class MathSectionViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subjects.count
+        return topics.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "topic")
-        cell?.textLabel?.text = subjects[indexPath.row]
+        cell?.textLabel?.text = topics[indexPath.row]
         return cell!
     }
 
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            if topics[indexPath.row] == "Addition"
+            {
+                operation = "+"
+            }
+            else if topics[indexPath.row] == "Multiplication"
+            {
+                operation = "X"
+            }
+            else if topics[indexPath.row] == "Division"
+            {
+                operation = "\u{00f7}"
+            }
+            else if topics[indexPath.row] == "Subtraction"
+            {
+                operation = "-"
+            }
+        performSegue(withIdentifier: "toMath", sender: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
