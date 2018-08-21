@@ -36,6 +36,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.3)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
+  - GradientProgressBar (1.1.2)
   - GTMSessionFetcher/Core (1.1.12)
   - leveldb-library (1.18.3)
   - nanopb (0.3.8):
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - GradientProgressBar (~> 1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -59,10 +61,11 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 607284a103e961d7f5863ee603cab5e85f443bd6
   FirebaseInstanceID: 70c2b877e9338971b2429ea5a4293df6961aa44e
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  GradientProgressBar: 02449b32108ee0ab1de8c88530e685641995c4ca
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 10fb39c39e243db4af1828441162405bbcec1404
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: f8a0503109272c440f6c7632f479eb3d07f83338
+PODFILE CHECKSUM: b939b30ef6dd55336f00da053988955675511ac6
 
 COCOAPODS: 1.2.1

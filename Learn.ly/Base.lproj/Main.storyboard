@@ -125,7 +125,8 @@
                                     <color key="titleColor" red="0.3294117647" green="0.69411764710000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Fdt-ZM-PSD" kind="show" id="Z9E-qD-I1M"/>
+                                    <action selector="signUpButtonAction:" destination="oXN-YA-KH8" eventType="touchUpInside" id="8LC-Gi-uLe"/>
+                                    <segue destination="Fdt-ZM-PSD" kind="show" identifier="signUp" id="Z9E-qD-I1M"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practic.ly" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9c-5Q-3hC">

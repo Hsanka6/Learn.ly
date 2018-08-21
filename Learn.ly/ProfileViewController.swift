@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController,PKPaymentAuthorizationViewControll
     
     
     func getKids(){
-        DataService.ds.REF_PARENT.observe(.value, with: { snapshot in
+        DataService.ds.REF_PARENT.child(uid).observe(.value, with: { snapshot in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshot{
                     print("snap is \(snap)")

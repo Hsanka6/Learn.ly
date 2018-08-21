@@ -8,6 +8,7 @@ target 'Learn.ly' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Alamofire', '~> 4.0'
+  pod 'GradientProgressBar', '~> 1.0'
   # pod 'GoogleSignIn'
   # Pods for Learn.ly
 

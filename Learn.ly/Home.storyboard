@@ -318,14 +318,14 @@
                                     <action selector="nextButton:" destination="aQi-aU-424" eventType="touchUpInside" id="8gS-OQ-8iz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDw-Tm-ouC">
-                                <rect key="frame" x="154" y="74" width="66.5" height="31.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDw-Tm-ouC">
+                                <rect key="frame" x="154" y="104" width="66.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4/10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jx-nG-QBO">
-                                <rect key="frame" x="15" y="74" width="122" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4/10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jx-nG-QBO">
+                                <rect key="frame" x="15" y="104" width="122" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="5Y9-wL-1Ba"/>
                                     <constraint firstAttribute="height" constant="32" id="HE5-b5-ihV"/>
@@ -334,23 +334,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjC-JP-gfc">
-                                <rect key="frame" x="280" y="74" width="80" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="aKs-LV-99Q"/>
-                                    <constraint firstAttribute="width" constant="80" id="n8v-xM-T7J"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.32941176470588235" green="0.69411764705882351" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5jx-nG-QBO" firstAttribute="top" secondItem="G5h-mb-vfr" secondAttribute="top" constant="10" id="7pl-ZB-JHq"/>
                             <constraint firstItem="HDw-Tm-ouC" firstAttribute="top" secondItem="G5h-mb-vfr" secondAttribute="top" constant="10" id="FvR-Ic-Mij"/>
                             <constraint firstItem="VdL-Al-NMF" firstAttribute="leading" secondItem="G5h-mb-vfr" secondAttribute="leading" constant="15" id="Huz-zi-bNR"/>
-                            <constraint firstItem="G5h-mb-vfr" firstAttribute="trailing" secondItem="SjC-JP-gfc" secondAttribute="trailing" constant="15" id="N5G-bs-HYS"/>
                             <constraint firstItem="G5h-mb-vfr" firstAttribute="bottom" secondItem="LTw-va-vd2" secondAttribute="bottom" constant="30" id="Qmh-cK-mxr"/>
                             <constraint firstItem="G5h-mb-vfr" firstAttribute="trailing" secondItem="1bo-Hu-yvU" secondAttribute="trailing" constant="15" id="azm-qs-3Uc"/>
                             <constraint firstItem="1bo-Hu-yvU" firstAttribute="top" secondItem="VdL-Al-NMF" secondAttribute="bottom" constant="100" id="gYP-9o-Cl6"/>
@@ -359,7 +348,6 @@
                             <constraint firstItem="5jx-nG-QBO" firstAttribute="leading" secondItem="G5h-mb-vfr" secondAttribute="leading" constant="15" id="nXQ-Jr-dPJ"/>
                             <constraint firstItem="LTw-va-vd2" firstAttribute="leading" secondItem="G5h-mb-vfr" secondAttribute="leading" constant="15" id="qXG-ra-hka"/>
                             <constraint firstItem="G5h-mb-vfr" firstAttribute="trailing" secondItem="LTw-va-vd2" secondAttribute="trailing" constant="15" id="rzs-GA-lIT"/>
-                            <constraint firstItem="SjC-JP-gfc" firstAttribute="top" secondItem="G5h-mb-vfr" secondAttribute="top" constant="10" id="t7d-bZ-Tda"/>
                             <constraint firstItem="1bo-Hu-yvU" firstAttribute="leading" secondItem="G5h-mb-vfr" secondAttribute="leading" constant="15" id="vEf-vu-wBi"/>
                             <constraint firstItem="HDw-Tm-ouC" firstAttribute="centerX" secondItem="W2w-Fc-ebY" secondAttribute="centerX" id="zY5-S3-yEv"/>
                         </constraints>
@@ -369,7 +357,6 @@
                     <connections>
                         <outlet property="answerTF" destination="1bo-Hu-yvU" id="h7w-Tf-sVF"/>
                         <outlet property="nextButton" destination="LTw-va-vd2" id="uqM-6d-Yws"/>
-                        <outlet property="percentLabel" destination="SjC-JP-gfc" id="0gY-AF-VM5"/>
                         <outlet property="questionLabel" destination="VdL-Al-NMF" id="TuH-Q3-aqY"/>
                         <outlet property="questionNumberLabel" destination="5jx-nG-QBO" id="wga-zT-1It"/>
                         <outlet property="secondsLabel" destination="HDw-Tm-ouC" id="ZRo-WW-mhK"/>

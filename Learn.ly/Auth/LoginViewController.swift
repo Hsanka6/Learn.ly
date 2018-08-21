@@ -28,8 +28,10 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "login", sender: nil)
             }
             
-            
         }
+    }
+    @IBAction func signUpButtonAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "signUp", sender: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,7 @@ class LoginViewController: UIViewController {
     }
 
     
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
     }
 

@@ -32,8 +32,9 @@ class AddKidViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func saveKid(_ sender: Any) {
         ref = Database.database().reference()
         child = Child(name: nameTF.text!, grade: gradeTF.text!, pointsForRewards: Int(numPointsTF.text!)!, rightVal: Int(rightTF.text!)!, wrongVal: Int(wrongTF.text!)!, reward: rewardTF.text!)
-        
-        ref?.child("parents").childByAutoId().setValue(child?.dict);
+        print("in add kid")
+        print(uid)
+        DataService.ds.REF_PARENT.child(uid).childByAutoId().setValue(child?.dict);
         performSegue(withIdentifier: "save", sender: nil)
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

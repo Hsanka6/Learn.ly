@@ -10,7 +10,6 @@ import UIKit
 
 class MathViewController: UIViewController {
 
-    @IBOutlet var percentLabel: UILabel!
     @IBOutlet var questionNumberLabel: UILabel!
     @IBAction func nextButton(_ sender: Any) {
 //        randomGen()
@@ -51,8 +50,8 @@ class MathViewController: UIViewController {
     func updateUI()
     {
         answerTF.text = ""
-        percent = Double(numRight)/10.0 * 100
-        percentLabel.text = "\(percent)%"
+        //percent = Double(numRight)/10.0 * 100
+        //percentLabel.text = "\(percent)%"
         if(numQuestion > 10 || seconds == 0) {
             numQuestion = 10
             performSegue(withIdentifier: "toResult", sender: nil)
@@ -136,7 +135,7 @@ class MathViewController: UIViewController {
             }
         }
     }
-    @objc func dismissKeyboard() {
+    @objc override func dismissKeyboard() {
         view.endEditing(true)
     }
     
