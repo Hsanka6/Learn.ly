@@ -18,13 +18,21 @@ class PracticeViewController: UIViewController, UITableViewDelegate, UITableView
     var allTopics:String = ""
     var childId:String = ""
     var operation:String = ""
-    var ref:DatabaseReference?
+    var email:String = ""
+    var uid:String = ""
+    let user = Auth.auth().currentUser
+
     //@IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("PRACTICE")
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if let user = user {
+            email = user.email!
+            uid = user.uid
+        }
         getKids()
         
 
@@ -34,7 +42,7 @@ class PracticeViewController: UIViewController, UITableViewDelegate, UITableView
    
         
     func getKids(){
-        DataService.ds.REF_PARENT.observe(.value, with: { snapshot in
+        DataService.ds.REF_PARENT.child(uid).observe(.value, with: { snapshot in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot]{
                 for snap in snapshot{
                     print("snap is \(snap)")
